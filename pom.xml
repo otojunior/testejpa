@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>org.otojunior</groupId>
+	<artifactId>testejpa</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>Project testejpa</name>
+	<url>http://www.org.otojunior/testejpa</url>
+	
+	<organization>
+		<name>Organization org.otojunior</name>
+		<url>http://www.org.otojunior</url>
+	</organization>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<dependency.version.commons-lang3>3.6</dependency.version.commons-lang3>
+		<dependency.version.commons-collections4>4.1</dependency.version.commons-collections4>
+		<dependency.version.commons-codec>1.10</dependency.version.commons-codec>
+		<dependency.version.slf4j>1.8.0-alpha2</dependency.version.slf4j>
+		<dependency.version.junit>4.12</dependency.version.junit>
+		<dependency.version.hibernate>5.1.12.Final</dependency.version.hibernate>
+		<dependency.version.hibernate-validator>5.3.6.Final</dependency.version.hibernate-validator>
+		<dependency.version.h2>1.4.195</dependency.version.h2>
+		<plugin.version.java>1.8</plugin.version.java>
+		<plugin.version.buildnumber-maven-plugin>1.4</plugin.version.buildnumber-maven-plugin>
+		<plugin.version.maven-jar-plugin>3.0.2</plugin.version.maven-jar-plugin>
+		<plugin.version.maven-shade-plugin>3.0.0</plugin.version.maven-shade-plugin>
+		<plugin.version.maven-compiler-plugin>3.6.1</plugin.version.maven-compiler-plugin>
+		<plugin.version.maven-source-plugin>3.0.1</plugin.version.maven-source-plugin>
+		<plugin.version.maven-javadoc-plugin>2.10.4</plugin.version.maven-javadoc-plugin>
+		<plugin.version.maven-surefire-plugin>2.20</plugin.version.maven-surefire-plugin>
+		<plugin.version.maven-release-plugin>2.5.3</plugin.version.maven-release-plugin>
+	</properties>
+
+	<!-- 
+		SCM Implementation: Git
+			scm:git:<protocol>://server_name[:port]/path_to_repository
+			scm:git:file://[hostname]/path_to_repository
+		Examples:
+			scm:git:ssh://github.com/projeto.git
+			scm:git:file://localhost/c:/temp/projeto.git
+	 -->
+	<scm>
+		<connection>scm:git:[Git Repo HTTPS URL]</connection>
+		<developerConnection>scm:git:[Git Repo URL]</developerConnection>
+	</scm>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>mvnrepo-snapshot-${project.artifactId}</id>
+			<url>file://${project.build.directory}/mvn-repo/snapshot</url>
+		</snapshotRepository>
+		<repository>
+			<id>mvnrepo-release-${project.artifactId}</id>
+			<url>file://${project.build.directory}/mvn-repo/release</url>
+		</repository>
+	</distributionManagement>
+	
+	<dependencies>
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-lang3</artifactId>
+		    <version>${dependency.version.commons-lang3}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-collections4</artifactId>
+		    <version>${dependency.version.commons-collections4}</version>
+		</dependency>
+		<dependency>
+		    <groupId>commons-codec</groupId>
+		    <artifactId>commons-codec</artifactId>
+		    <version>${dependency.version.commons-codec}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.slf4j</groupId>
+		    <artifactId>slf4j-simple</artifactId>
+		    <version>${dependency.version.slf4j}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>${dependency.version.hibernate-validator}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.glassfish.web</groupId>
+		    <artifactId>javax.el</artifactId>
+		    <version>2.2.4</version>
+		</dependency>
+		<dependency>
+		    <groupId>com.h2database</groupId>
+		    <artifactId>h2</artifactId>
+		    <version>${dependency.version.h2}</version>
+		</dependency>
+		<dependency>
+		    <groupId>junit</groupId>
+		    <artifactId>junit</artifactId>
+		    <version>${dependency.version.junit}</version>
+		    <scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${dependency.version.hibernate}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>${dependency.version.hibernate}</version>
+			<scope>test</scope>
+		</dependency>
+		
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>buildnumber-maven-plugin</artifactId>
+				<version>${plugin.version.buildnumber-maven-plugin}</version>
+				<executions>
+					<execution>
+						<phase>validate</phase>
+						<goals>
+							<goal>create</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<revisionOnScmFailure>true</revisionOnScmFailure>
+					<shortRevisionLength>8</shortRevisionLength>
+					<timestampFormat>{0,date,dd/MM/yyyy HH:mm:ss}</timestampFormat>
+				</configuration>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>${plugin.version.maven-jar-plugin}</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+							<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+							<mainClass>org.otojunior.testejpa.App</mainClass>
+						</manifest>
+						<manifestEntries>
+							<Implementation-Build>${buildNumber}</Implementation-Build>
+							<Implementation-Branch>${scmBranch}</Implementation-Branch>
+							<Implementation-Date>${timestamp}</Implementation-Date>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+			
+			<!-- Gerar JAR executável: mvn clean package shade:shade -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>${plugin.version.maven-shade-plugin}</version>
+				<configuration>
+					<minimizeJar>false</minimizeJar>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${plugin.version.maven-compiler-plugin}</version>
+				<configuration>
+					<source>${plugin.version.java}</source>
+					<target>${plugin.version.java}</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>${plugin.version.maven-source-plugin}</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>${plugin.version.maven-javadoc-plugin}</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${plugin.version.maven-surefire-plugin}</version>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>${plugin.version.maven-release-plugin}</version>
+				<configuration>
+					<tagNameFormat>v@{project.version}</tagNameFormat>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
