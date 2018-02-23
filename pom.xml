@@ -78,9 +78,9 @@
 		    <version>${dependency.version.commons-codec}</version>
 		</dependency>
 		<dependency>
-		    <groupId>org.slf4j</groupId>
-		    <artifactId>slf4j-simple</artifactId>
-		    <version>${dependency.version.slf4j}</version>
+		    <groupId>ch.qos.logback</groupId>
+		    <artifactId>logback-classic</artifactId>
+		    <version>1.2.3</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>

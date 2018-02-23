@@ -42,5 +42,6 @@ public class DadoBancario extends AbstractEntity {
 	 */
 	public void setMunicipio(Municipio municipio) {
 		this.municipio = municipio;
+		this.municipio.updateSituacao();
 	}
 }

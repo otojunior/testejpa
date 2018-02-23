@@ -60,4 +60,13 @@ public class AbstractTest {
 	public EntityManager getEntityManager() {
 		return entityManager;
 	}
+	
+	/**
+	 * 
+	 * @param entity
+	 */
+	public void persist(AbstractEntity entity) {
+		getEntityManager().persist(entity);
+		getEntityManager().flush();
+	}
 }
