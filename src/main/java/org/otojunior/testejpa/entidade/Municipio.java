@@ -6,6 +6,7 @@ package org.otojunior.testejpa.entidade;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.OneToMany;
@@ -18,10 +19,10 @@ import javax.persistence.OneToMany;
 public class Municipio extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
 	
-	@OneToMany(mappedBy="municipio")
+	@OneToMany(mappedBy="municipio", cascade=CascadeType.PERSIST)
 	private List<DadoBancario> dadosBancarios = new ArrayList<>();
 	
-	@OneToMany(mappedBy="municipio")
+	@OneToMany(mappedBy="municipio", cascade=CascadeType.PERSIST)
 	private List<Aliquota> aliquotas = new ArrayList<>();
 	
 	@Enumerated
