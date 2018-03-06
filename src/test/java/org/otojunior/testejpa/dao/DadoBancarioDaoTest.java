@@ -10,9 +10,9 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.otojunior.testejpa.dto.MunicipioDadoBancarioDto;
-import org.otojunior.testejpa.entidade.AbstractTest;
 import org.otojunior.testejpa.entidade.DadoBancario;
 import org.otojunior.testejpa.entidade.Municipio;
 import org.otojunior.testejpa.entidade.Situacao;
@@ -21,10 +21,11 @@ import org.otojunior.testejpa.entidade.Situacao;
  * @author 01456231650
  *
  */
-public class DadoBancarioDaoTest extends AbstractTest {
+public class DadoBancarioDaoTest extends AbstractDaoPostgreSqlTest {
 	private DadoBancarioDao dao = new DadoBancarioDao();
 	
 	@Test
+	@Ignore
 	public void teste() {
 		Municipio povoado = new Municipio(1);
 		persist(povoado);

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.otojunior.testejpa.entidade;
+package org.otojunior.testejpa.dao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -11,12 +11,13 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.otojunior.testejpa.entidade.AbstractEntity;
 
 /**
  * @author 01456231650
  *
  */
-public class AbstractTest {
+public class AbstractDaoPostgreSqlTest {
 	private static EntityManagerFactory entityManagerFactory;
 	private EntityManager entityManager;
 	
@@ -25,7 +26,7 @@ public class AbstractTest {
 	 */
 	@BeforeClass
 	public static void beforeClass() {
-		entityManagerFactory = Persistence.createEntityManagerFactory("default_tests");
+		entityManagerFactory = Persistence.createEntityManagerFactory("default_tests_postgresql");
 	}
 	
 	/**

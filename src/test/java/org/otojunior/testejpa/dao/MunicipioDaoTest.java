@@ -3,13 +3,12 @@ package org.otojunior.testejpa.dao;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-import org.otojunior.testejpa.entidade.AbstractTest;
 import org.otojunior.testejpa.entidade.Aliquota;
 import org.otojunior.testejpa.entidade.DadoBancario;
 import org.otojunior.testejpa.entidade.Municipio;
 import org.otojunior.testejpa.entidade.Situacao;
 
-public class MunicipioDaoTest extends AbstractTest {
+public class MunicipioDaoTest extends AbstractDaoTest {
 	private MunicipioDao dao = new MunicipioDao();
 	
 	@Test

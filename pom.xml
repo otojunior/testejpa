@@ -98,6 +98,11 @@
 		    <version>${dependency.version.h2}</version>
 		</dependency>
 		<dependency>
+		    <groupId>org.postgresql</groupId>
+		    <artifactId>postgresql</artifactId>
+		    <version>9.4.1207</version>
+		</dependency>
+		<dependency>
 		    <groupId>junit</groupId>
 		    <artifactId>junit</artifactId>
 		    <version>${dependency.version.junit}</version>

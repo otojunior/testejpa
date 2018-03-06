@@ -6,12 +6,13 @@ package org.otojunior.testejpa.entidade;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+import org.otojunior.testejpa.dao.AbstractDaoTest;
 
 /**
  * @author 01456231650
  *
  */
-public class MunicipioTest extends AbstractTest {
+public class MunicipioTest extends AbstractDaoTest {
 
 	@Test
 	public void testSemDadosSemAliquotas() {
